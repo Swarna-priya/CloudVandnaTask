@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        height: 500px;
+        width: 500px;
+        background-color: silver;
+        margin: auto;
+        margin-top: 50px;
+        padding-top: 50px;
+        box-sizing: border-box;
+      }
+      #box2 {
+        height: 265px;
+        width: 300px;
+        background-color: black;
+        margin-left: 100px;
+        margin-top: 40px;
+        box-sizing: border-box;
+      }
+      td {
+        padding: 15px;
+      }
+      #table1 {
+        padding: 5px;
+        /* border: 2px solid white; */
+        height: 100px;
+        width: 300px;
+        color: antiquewhite;
+      }
+      /* body box1 box2 {
+        margin-top: 40px;
+      } */
+
+
+</style>
+  </head>
+  <body>
+    <div id="box1">
+      <div id="box2">
+        <table style="align-items: center" id="table1">
+          <tr>
+            <th colspan="4" style="background-color: white">
+              <input type="text" id="display" disabled />
+            </th>
+            <td
+              style="background-color: aqua; padding-left: 10px"
+              onclick="clearDisplay()"
+            >
+              AC
+            </td>
+          </tr>
+          <tr>
+            <th rowspan="4"></th>
+            <td onclick="appendToDisplay('9')">9</td>
+            <td onclick="appendToDisplay('8')">8</td>
+            <td onclick="appendToDisplay('7')">7</td>
+            <td style="background-color: silver" onclick="appendToDisplay('+')">
+              +
+            </td>
+          </tr>
+          <tr>
+            <!-- <th rowspan="4"></th> -->
+            <td onclick="appendToDisplay('4')">4</td>
+            <td onclick="appendToDisplay('5')">5</td>
+            <td onclick="appendToDisplay('6')">6</td>
+            <td onclick="appendToDisplay('-')" style="background-color: silver">
+              -
+            </td>
+          </tr>
+          <tr>
+            <td onclick="appendToDisplay('1')">1</td>
+            <td onclick="appendToDisplay('2')">2</td>
+            <td onclick="appendToDisplay('3')">3</td>
+            <td style="background-color: silver" onclick="appendToDisplay('/')">
+              /
+            </td>
+          </tr>
+          <tr>
+            <td onclick="appendToDisplay('.')">.</td>
+            <td onclick="appendToDisplay('0')">0</td>
+            <td onclick="calculateResult()">=</td>
+            <td style="background-color: silver" onclick="appendToDisplay('*')">
+              *
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function appendToDisplay(value) {
+        document.getElementById("display").value += value;
+      }
+
+      function clearDisplay() {
+        document.getElementById("display").value = "";
+      }
+
+      function calculateResult() {
+        try {
+          const result = eval(document.getElementById("display").value);
+          document.getElementById("display").value = result;
+        } catch (error) {
+          document.getElementById("display").value = "Error";
+        }
+      }
+      function appendToDisplay(value) {
+        if (checkForOperator(value)) {
+          if (display.value === "0" && value !== ".") {
+            display.value = value;
+          } else {
+            display.value += value;
+          }
+        }
+      }
+
+      function checkForOperator(op) {
+        if (
+          display.value.includes("+", "-", "/", "*") &&
+          (op == "+" || op == "/" || op == "*" || op == "*")
+        ) {
+          return false;
+        } else return true;
+      }
+    </script>
+  </body>
+</html>
